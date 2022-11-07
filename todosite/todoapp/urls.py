@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import index,delete,add,update
+from .views import index,delete,update
 
 app_name="todoapp"
 

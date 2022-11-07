@@ -33,6 +33,9 @@
                             <input type="text" class="xlarge" name="priority" id="priority" placeholder="Enter the priority from 1-9">
                         </div><br>
                         <div class="controls">
+                            <input type="date" class="xlarge" name="date" id="date">
+                        </div><br>
+                        <div class="controls">
                             <input type="submit" class="xlarge btn btn-success" name="add" id="add" value="Add Task">
                         </div>
                     </fieldset>
@@ -44,10 +47,18 @@
             <h4>Tasks to be completed</h4>
             <!--height and width is controlled using 'css style'-->
             {% for task in tasks %}
-            <div class="card shadow bg-white rounded mb-2" style="width:22rem; height:11rem"><!-- shadow only available from bootstrap 4.1-->
+            <div class="card shadow bg-white rounded mb-2 " ><!-- shadow only available from bootstrap 4.1-->
+                <div class="card-header text-muted small d-flex justify-content-between" style="height:2rem">
+                    <div>
+                        {{task.date}}
+                    </div>
+                    <div>
+                        priority: {{task.priority}}
+                    </div>
+                    
+                </div>
                 <div class="card-body">  
-                    <h1 class="card-title">{{task.text}}</h1>
-                    <p class="card-text">{{task.priority}}</p>
+                    <h1 class="card-title" style="font-size:18px">{{task.text}}</h1>                    
                     <a class="btn btn-warning" href="{% url 'todoapp:update' task.id %}">Update</a>
                     <a class="btn btn-danger" href="{% url 'todoapp:delete' task.id %}">Done</a>
                 </div>

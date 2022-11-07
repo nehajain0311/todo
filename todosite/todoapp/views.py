@@ -7,18 +7,16 @@ from .forms import TaskForm
 
 # Create your views here.
 def index(request):
-    task_list=Task.objects.all()
+    task_list=Task.objects.all().order_by('-priority').values #sorted according to descending priority
     if request.method=='POST':
         text=request.POST.get('text')
         priority=request.POST.get('priority')
-        task=Task(text=text,priority=priority)
+        date=request.POST.get('date')
+        task=Task(text=text,priority=priority,date=date)
         task.save()
         return redirect("/")
     return render(request,'todoapp/index.html',{'tasks':task_list})
 
-def add(request):
-    
-    return render(request,'todoapp/add.html')
 
 def update(request,id):
     task=Task.objects.get(id=id)
