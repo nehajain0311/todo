@@ -6,7 +6,6 @@ app_name="todoapp"
 
 urlpatterns = [
     path("",index,name="index"),
-    path("add/",add,name="add"),
     path("update/<int:id>/",update,name="update"),
     path("delete/<int:task_id>/",delete,name="delete"),
     

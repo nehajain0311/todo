@@ -1,33 +1,49 @@
 {% extends 'todoapp/base.html' %}
 {% block body %}
 <div class="container">
-    <div class="jumbotron jumbotron-fluid bg-dark text-white mb-2 shadow">
-        <div class="container">
-            <div class="banner">
-                <div class="banner-text">
-                    <h1>Todo</h1>
-                    <p class="lead">Add your everyday task and assign priority</p>
-                </div>
-            </div>    
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-<div class="container" >
-    {% for task in tasks %}
     <div class="row">
         <!--divides page into 12 columns and can be used to alot components accordingly-->
+        <div class="col-md-12">
+            <div class="jumbotron jumbotron-fluid bg-dark text-white mb-2 shadow">
+                <div class="container">
+                    <div class="banner">
+                        <div class="banner-text">
+                            <h1>Todo</h1>
+                            <p class="lead">Add your everyday task and assign priority</p>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-sm-6">
+            <h4> ADD TASK</h4>
+            <form method="POST" class="shadow p-2">
+                {% csrf_token %}
+            
+                    <fieldset class="control-group">
+                        <label class="control-label" for="text">Task</label>
+                        <div class="controls">
+                            <input type="text" class="xlarge" name="text" id="text" placeholder="Enter the task">
+                        </div><br>
+                        <label class="control-label" for="priority">Priority</label>
+                        <div class="controls">
+                            <input type="text" class="xlarge" name="priority" id="priority" placeholder="Enter the priority from 1-9">
+                        </div><br>
+                        <div class="controls">
+                            <input type="submit" class="xlarge btn btn-success" name="add" id="add" value="Add Task">
+                        </div>
+                    </fieldset>
+            </form>
+        </div>
+    
+                   
+        <div class="col-sm-6">            
+            <h4>Tasks to be completed</h4>
             <!--height and width is controlled using 'css style'-->
+            {% for task in tasks %}
             <div class="card shadow bg-white rounded mb-2" style="width:22rem; height:11rem"><!-- shadow only available from bootstrap 4.1-->
                 <div class="card-body">  
                     <h1 class="card-title">{{task.text}}</h1>
@@ -35,10 +51,9 @@
                     <a class="btn btn-warning" href="{% url 'todoapp:update' task.id %}">Update</a>
                     <a class="btn btn-danger" href="{% url 'todoapp:delete' task.id %}">Done</a>
                 </div>
-            </div>            
-        </div>
-    </div>
-    {% endfor %}
-    <a class="btn btn-info xlarge" href="{% url 'todoapp:add'%}">Add Task</a>
+            </div>
+            {% endfor %}                       
+        </div>  
+    </div>        
 </div>
 {% endblock %}
