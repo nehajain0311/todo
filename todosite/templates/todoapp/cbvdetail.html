@@ -1,0 +1,19 @@
+{% extends 'todoapp/base.html' %}
+{% block body %}
+<div class="card shadow bg-white rounded mb-2 " ><!-- shadow only available from bootstrap 4.1-->
+    <div class="card-header text-muted small d-flex justify-content-between" style="height:2rem">
+        <div>
+            {{task.date}}
+        </div>
+        <div>
+            priority: {{task.priority}}
+        </div>
+        
+    </div>
+    <div class="card-body">  
+        <h1 class="card-title" style="font-size:18px">{{task.text}}</h1>                    
+        <a class="btn btn-warning" href="{% url 'todoapp:cbvupdate' task.id %}">Update</a>
+        <a class="btn btn-danger" href="{% url 'todoapp:cbvdelete' task.id %}">Done</a>
+    </div>
+</div>
+{% endblock %}

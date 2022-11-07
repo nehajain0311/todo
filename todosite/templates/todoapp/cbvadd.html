@@ -1,0 +1,32 @@
+{% extends 'todoapp/base.html' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h4> ADD TASK</h4>
+            <form method="POST" class="shadow p-2" enctype="multipart/form-data">
+                {% csrf_token %}
+            
+                    <fieldset class="control-group">
+                        <label class="control-label" for="text">Task</label>
+                        <div class="controls">
+                            <input type="text" class="xlarge" name="text" id="text" placeholder="Enter the task">
+                        </div><br>
+                        <label class="control-label" for="priority">Priority</label>
+                        <div class="controls">
+                            <input type="text" class="xlarge" name="priority" id="priority" placeholder="Enter the priority from 1-9">
+                        </div><br>
+                        <div class="controls">
+                            <input type="date" class="xlarge" name="date" id="date">
+                        </div><br>
+                        <div class="controls">
+                            <input type="submit" class="xlarge btn btn-success" name="add" id="add" value="Add Task">
+                        </div>
+                    </fieldset>
+            </form>
+        </div>
+    
+                   
+    </div>        
+</div>
+{% endblock %}

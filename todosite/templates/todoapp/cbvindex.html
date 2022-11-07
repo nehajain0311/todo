@@ -1,0 +1,38 @@
+{% extends 'todoapp/base.html' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <!--divides page into 12 columns and can be used to alot components accordingly-->
+        <div class="col-md-12">
+            <div class="jumbotron jumbotron-fluid bg-dark text-white mb-2 shadow">
+                <div class="container">
+                    <div class="banner">
+                        <div class="banner-text">
+                            <h1>Todo</h1>
+                            <p class="lead">Add your everyday task and assign priority</p>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">            
+        <div class="col-sm-8 center">            
+            <h4>Tasks to be completed</h4>
+            <!--height and width is controlled using 'css style'-->
+            {% for task in tasks %}
+            <div class="card shadow bg-white rounded mb-2 " ><!-- shadow only available from bootstrap 4.1-->
+                <div class="card-body">  
+                    <a href="{% url 'todoapp:cbvdetail' task.id %}" class="card-title" style="font-size:18px">{{task.text}}</a>
+                    <h4 class="card-text">priority: {{task.priority}}</h4>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- once createview generic view is used template add.html with its function view add is completely useless -->
+            <!--<a class="btn btn-info" href=\"{% url 'todoapp:add' %}\">Add Task</a>-->
+            <a class="btn btn-info" href="{% url 'todoapp:cbvadd' %}">Add Task</a>                       
+        </div>  
+    </div>        
+</div>
+{% endblock %}
