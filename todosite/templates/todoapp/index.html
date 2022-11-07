@@ -1,7 +1,19 @@
 {% extends 'todoapp/base.html' %}
 {% block body %}
+<div class="container" style="margin-top:20px">
     {% for task in tasks %}
-        <h1>task.text</h1>
-        <p>task.priority</p>
-    {% endfor%}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">  
+                    <h1 class="card-title">{{task.text}}</h1>
+                    <p class="card-text">{{task.priority}}</p>
+                    <a class="btn btn-danger" href="{% url 'todoapp:delete' task.id %}">Done</a>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</div>
 {% endblock %}
