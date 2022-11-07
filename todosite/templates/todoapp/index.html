@@ -1,0 +1,7 @@
+{% extends 'todoapp/base.html' %}
+{% block body %}
+    {% for task in tasks %}
+        <h1>task.text</h1>
+        <p>task.priority</p>
+    {% endfor%}
+{% endblock %}
